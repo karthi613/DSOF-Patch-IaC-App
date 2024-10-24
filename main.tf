@@ -5,6 +5,17 @@ provider "aws" {
   skip_metadata_api_check     = true
 }
 
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 4.0.0"
+    }
+  }
+
+  required_version = ">= 1.3.0"  # Adjust based on your Terraform version needs
+}
+
 resource "aws_iam_account_password_policy" "strict" {
   minimum_password_length = 14
   require_lowercase_characters   = true
