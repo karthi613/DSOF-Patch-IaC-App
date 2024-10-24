@@ -1,5 +1,4 @@
 provider "aws" {
-  version                     = "~> 2.67"
   region                      = var.region
   skip_credentials_validation = true
   skip_requesting_account_id  = true
