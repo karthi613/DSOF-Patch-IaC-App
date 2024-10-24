@@ -1,6 +1,21 @@
 resource "aws_s3_bucket" "insecure-bucket" {
   bucket = "insecure-bucket"
-  versioning.enabled = true
+}
+
+resource "aws_s3_bucket_versioning" "version" {
+  bucket = aws_s3_bucket.insecure-bucket
+  versioning_configuration {
+    status = "Enabled"
+    mfa_delete = "Enabled"
+  }
+}
+
+resource "aws_s3_bucket_logging " "name" {
+   bucket = aws_s3_bucket.insecure-bucket
+    target_bucket = aws_s3_bucket.insecure-bucket
+    target_prefix = "log/"
+
+    depends_on = [aws_s3_bucket.insecure-bucket]
 }
 
 # resource "aws_s3_bucket_public_access_block" "insecure-bucket" {
