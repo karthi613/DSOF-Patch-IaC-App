@@ -10,7 +10,12 @@ resource "aws_cloudtrail" "insecure-logging" {
 resource "aws_cloudwatch_log_group" "insecure-logging" {
   name = "aws_cloudtrail_log"
   retention_in_days = 1
+  kms_key_id = var.kms_key_id
   tags = {
     Name = "aws_cloudtrail_log"
   }
+}
+
+variable "kms_key_id" {
+  type = string
 }

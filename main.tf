@@ -29,6 +29,8 @@ module "storage" {
 
 module "cloudtrail" {
   source = "./modules/cloudtrail"
+  kms_key_id = module.pki.kms_key
+  depends_on = [ module.pki ]
 }
 
 module "pki" {
